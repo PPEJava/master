@@ -46,8 +46,8 @@ public class LoginView extends JFrame implements ActionListener, KeyListener{
             this.jPanel.getComponent(i).setFont(unePolice);
         }
 
-        
-        
+
+
         ImageIcon uneImage = new ImageIcon("images/ftfi_logo.jpg");
         JLabel monImage = new JLabel(uneImage);
         monImage.setBounds(20,0,300,240);
@@ -68,47 +68,47 @@ public class LoginView extends JFrame implements ActionListener, KeyListener{
     }
 
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
+
+    }
 
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			String email = this.emailField.getText();
-			String mdp = new String (this.passwordField.getPassword());
-			Main.verifConnexion(email,mdp);
-			this.emailField.setText("");
-			this.passwordField.setText("");
-		}
-		
-	}
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            String email = this.emailField.getText();
+            String mdp = new String (this.passwordField.getPassword());
+            Main.verifConnexion(email,mdp);
+            this.emailField.setText("");
+            this.passwordField.setText("");
+        }
+
+    }
 
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
+
+    }
 
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand())
-		{
-		case"Annuler" : 
-			this.emailField.setText("");
-			this.passwordField.setText("");
-			break;
-		case"Se connecter" :
-			String email = this.emailField.getText();
-			String password = new String (this.passwordField.getPassword());
-			Main.verifConnexion(email,password);
-			break;
-		}
-		
-	}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand())
+        {
+            case"Annuler" :
+                this.emailField.setText("");
+                this.passwordField.setText("");
+                break;
+            case"Se connecter" :
+                String email = this.emailField.getText();
+                String password = new String (this.passwordField.getPassword());
+                Main.verifConnexion(email,password);
+                break;
+        }
+
+    }
 }

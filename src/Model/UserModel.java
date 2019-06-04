@@ -10,9 +10,8 @@ import java.util.ArrayList;
 
 public class UserModel {
 
-
-    private static BDD database = new BDD("localhost:8889", "root", "root", "ftfi_site_v2");
-
+    //private static BDD database = new BDD("localhost:8889", "root", "root", "ftfi_site_v2");
+    private static BDD database = new BDD("srv129.main-hosting.eu", "u632050847_mmd", "MMD123321", "u632050847_ftfi");
 
     public static void insertUser(Controller.User user) {
         String query = "INSERT INTO user VALUES('" + user.getEmail() + "','" + user.getMotDePasse() + "','" + user.getNom() + "','" + user.getPrenom() + "')";
@@ -119,6 +118,27 @@ public class UserModel {
             System.out.println("Erreur de requete " + e.getMessage());
         }
         database.logout();
+
+    }
+
+    public static int CountNbUtilisateur()
+    {
+        int NbArticle=0;
+        String requete="SELECT COUNT(*) as nb FROM Utilisateurs;";
+
+        UserModel.database.login();
+        try {
+            Statement unStat = database.getConnection().createStatement();
+            ResultSet unRes= unStat.executeQuery(requete);
+            if(unRes.next())
+            {
+                NbArticle=unRes.getInt("nb");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de la requete " + requete);
+        }
+        UserModel.database.logout();
+        return NbArticle;
 
     }
 

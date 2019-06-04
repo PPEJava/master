@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         loginView = new LoginView();
-      
+
     }
 
 	public static void verifConnexion(String email, String password)
@@ -36,7 +36,6 @@ public class Main {
 			}
 		}
 	}
-
 
 
 	public static PrincipalView getPrincipalView() {
@@ -72,6 +71,8 @@ public class Main {
 
 	public static void updateProduit(Produit unProduit) {  Model.updateProduit(unProduit); }
 
+	public static int CountNbProduit() { return Model.CountNbProduit(); }
+
 
 	//fonctions Article
 
@@ -91,6 +92,10 @@ public class Main {
 
 	public static void updateArticle(Article unArticle) {  ModelArticle.updateArticle(unArticle); }
 
+	public static int CountNbArticle() { return ModelArticle.CountNbArticle(); }
+
+	public static Object selectNomArticleFR(){ return ModelArticle.selectNomArticleFR(); }
+
 
 	//fonctions Sous Categorie
 
@@ -103,6 +108,8 @@ public class Main {
 	public static SousCategorie selectSousCategorieWhereId(int idSousCategorie) { return ModelSousCategorie.selectSousCategorieWhereId(idSousCategorie); }
 
 	public static void updateSousCategorie(SousCategorie uneSousCategorie) {  ModelSousCategorie.updateSousCategorie(uneSousCategorie); }
+
+	public static int CountNbSousCategorie() { return ModelSousCategorie.CountNbSousCategorie(); }
 
 
 	//fonctions Categorie
@@ -117,6 +124,10 @@ public class Main {
 
 	public static void updateCategorie(Categorie uneCategorie) {  ModelCategorie.updateCategorie(uneCategorie); }
 
+	public static int CountNbCategorie() { return ModelCategorie.CountNbCategorie(); }
+
+	//fonctions Fournisseur
+	public static int CountNbFournisseur() { return ModelFournisseur.CountNbFournisseur(); }
 
 }
 

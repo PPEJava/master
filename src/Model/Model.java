@@ -9,8 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Model {
+    //private static BDD database = new BDD("localhost:8889", "root", "root", "ftfi_site_v2");
+    private static BDD database = new BDD("srv129.main-hosting.eu", "u632050847_mmd", "MMD123321", "u632050847_ftfi");
 
-    private static BDD database = new BDD("localhost:8889","root","root","ftfi_site_v2");
 
     public static ArrayList<Produit> selectAll(){
 
@@ -226,4 +227,28 @@ public class Model {
 
 
     }
+
+    public static int CountNbProduit()
+    {
+        int NbArticle=0;
+        String requete="SELECT COUNT(*) as nb FROM Variantes_Articles;";
+
+        Model.database.login();
+        try {
+            Statement unStat = database.getConnection().createStatement();
+            ResultSet unRes= unStat.executeQuery(requete);
+            if(unRes.next())
+            {
+                NbArticle=unRes.getInt("nb");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de la requete " + requete);
+        }
+        Model.database.logout();
+        return NbArticle;
+    }
+
+
+
+
 }

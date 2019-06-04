@@ -3,14 +3,16 @@ package Model;
 
 import Controller.Article;
 
+import java.lang.annotation.ElementType;
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ModelArticle {
-
-    private static BDD database = new BDD("localhost:8889","root","root","ftfi_site_v2");
+    //private static BDD database = new BDD("localhost:8889", "root", "root", "ftfi_site_v2");
+    private static BDD database = new BDD("srv129.main-hosting.eu", "u632050847_mmd", "MMD123321", "u632050847_ftfi");
 
     public static ArrayList<Article> selectAll(){
 
@@ -204,5 +206,51 @@ public class ModelArticle {
 
 
     }
+    public static int CountNbArticle()
+    {
+        int NbArticle=0;
+        String requete="SELECT COUNT(*) as nb FROM Articles;";
+
+        ModelArticle.database.login();
+        try {
+            Statement unStat = database.getConnection().createStatement();
+            ResultSet unRes= unStat.executeQuery(requete);
+            if(unRes.next())
+            {
+                NbArticle=unRes.getInt("nb");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de la requete " + requete);
+        }
+        ModelArticle.database.logout();
+        return NbArticle;
+
+    }
+
+    public static ArrayList<Object> selectNomArticleFR(){
+        ArrayList<Object> lesnoms = new ArrayList<>();
+        String nom;
+        String query = "SELECT nomArticleFR FROM Articles ORDER BY nomArticleFR;";
+        database.login();
+
+        try {
+            Statement statement = database.getConnection().createStatement();
+            ResultSet results = statement.executeQuery(query);
+
+            while (results.next())
+            {
+                nom=results.getString("nomArticleFR");
+                lesnoms.add(nom);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        database.logout();
+
+        return lesnoms;
+    }
+
 
 }

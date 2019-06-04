@@ -7,10 +7,7 @@ import Model.Model;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,6 +37,9 @@ public class PanelLister extends PanelCentral implements ActionListener
     private JButton btAnnuler = new JButton("Annuler");
     private JButton btAjouter = new JButton("Ajouter");
     private JButton btModifier = new JButton("Modifier");
+
+    private JComboBox listeArticle;
+
     JFormattedTextField txtDateAjout = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
 
 
@@ -65,7 +65,7 @@ public class PanelLister extends PanelCentral implements ActionListener
 
 
 
-        this.ajouter.setLayout(new GridLayout(11,1));
+        this.ajouter.setLayout(new GridLayout(12,1));
         this.ajouter.setBounds(20,350,600,200);
         this.ajouter.add(new JLabel("Référence commerciale : "));
         this.ajouter.add(this.txtRefCommercial);
@@ -86,8 +86,18 @@ public class PanelLister extends PanelCentral implements ActionListener
         this.ajouter.add(this.txtPoidsVar);
         this.ajouter.add(new JLabel("Prix : "));
         this.ajouter.add(this.txtPrixVar);
-        this.ajouter.add(new JLabel("IdArticle : "));
+        this.ajouter.add(new JLabel("Catégorie d'Article : "));
         this.ajouter.add(this.txtIdArticle);
+
+        /*combobox des intitulés articles
+        ArrayList liste= (ArrayList) Main.selectNomArticleFR();
+        listeArticle = new JComboBox();
+        for(int i=0;i<liste.size();i++)
+            listeArticle.addItem(liste.get(i));
+
+
+        this.ajouter.add(listeArticle);
+*/
         this.ajouter.add(new JLabel("Date d'ajout "));
         this.ajouter.add(this.txtDateAjout);
 
@@ -242,6 +252,9 @@ public class PanelLister extends PanelCentral implements ActionListener
         this.txtDispoVar.setText(unProduit.getDisponibiliteVariante()+"");
         this.txtPoidsVar.setText(unProduit.getPoidsVariante()+"");
         this.txtPrixVar.setText(unProduit.getPrixVariante()+"");
+
+        //a modifier
+        //this.listeArticle.setSelectedItem(Main.selectArticleWhereId(unProduit.getIdArticle()).getNomArticleFR());
         this.txtIdArticle.setText(unProduit.getIdArticle()+"");
         this.txtDateAjout.setValue(unProduit.getDateAjout());
     }
